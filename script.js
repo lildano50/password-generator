@@ -43,28 +43,35 @@ generateBtn.addEventListener("click", writePassword);
 // Write password to the #password input
 function writePassword() {
   let characters = "";
-  var pwLength = prompt ("Select a password length between 8 and 128:");
-  while (pwLength > 128 || pwLength < 8) {
-    pwLength = prompt ("Invalid length! Select a password length between 8 and 128:")
-  }
-  var uppercase = prompt("Would you like to include uppercase letters?");
-  if (uppercase === "yes" || uppercase === "y"){
-    characters += upperLetters
-  };
-  var lowercase = prompt("Would you like to include lowercase letters?");
-  if (lowercase === "yes" || lowercase === "y"){
-    characters += lowerLetters
-  };
-  var num = prompt("Would you like to include numbers?");
-  if (num === "yes" || num === "y"){
-    characters += numbers
-  };
-  var special = prompt("Would you like to include special characters?");
-  if (special === "yes" || special === "y"){
-    characters += specialChar
-  };
-  var passwordText = document.querySelector("#password");
 
+  var pwLength = prompt ("Select a password length between 8 and 128:");
+
+  while (pwLength > 128 || pwLength < 8) {
+    pwLength = prompt("Invalid length! Select a password length between 8 and 128:")
+  }
+
+  while (characters === ""){
+    alert("YOU MUST SELECT AT LEAST ONE CHARACTER TYPE TO INCLUDE!" + "\n" + "\n" +
+    "Click OK to proceed");
+    var uppercase = prompt("Would you like to include uppercase letters?");
+    if (uppercase.toLowerCase() === "yes" || uppercase.toLowerCase() === "y"){
+      characters += upperLetters
+    };
+    var lowercase = prompt("Would you like to include lowercase letters?");
+    if (lowercase.toLowerCase() === "yes" || lowercase.toLowerCase() === "y"){
+      characters += lowerLetters
+    };
+    var num = prompt("Would you like to include numbers?");
+    if (num.toLowerCase() === "yes" || num.toLowerCase() === "y"){
+      characters += numbers
+    };
+    var special = prompt("Would you like to include special characters?");
+    if (special.toLowerCase() === "yes" || special.toLowerCase() === "y"){
+      characters += specialChar
+    };
+  };
+  
+  var passwordText = document.querySelector("#password");
   var password = generatePassword(pwLength,characters);
   passwordText.value = password;
 
