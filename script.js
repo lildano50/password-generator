@@ -32,19 +32,51 @@
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 let specialChar = " !\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
-let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let upperLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let lowerLetters = "abcdefghijklmnopqrstuvwxyz"
 let numbers = "0123456789";
 
-// Write password to the #password input
-function writePassword(length, characters) {
-    var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-//test
+// Write password to the #password input
+function writePassword() {
+  let characters = "";
+  var pwLength = prompt ("Select a password length between 8 and 128:");
+  while (pwLength > 128 || pwLength < 8) {
+    pwLength = prompt ("Invalid length! Select a password length between 8 and 128:")
+  }
+  var uppercase = prompt("Would you like to include uppercase letters?");
+  if (uppercase === "yes" || uppercase === "y"){
+    characters += upperLetters
+  };
+  var lowercase = prompt("Would you like to include lowercase letters?");
+  if (lowercase === "yes" || lowercase === "y"){
+    characters += lowerLetters
+  };
+  var num = prompt("Would you like to include numbers?");
+  if (num === "yes" || num === "y"){
+    characters += numbers
+  };
+  var special = prompt("Would you like to include special characters?");
+  if (special === "yes" || special === "y"){
+    characters += specialChar
+  };
+  var passwordText = document.querySelector("#password");
+
+  var password = generatePassword(pwLength,characters);
+  passwordText.value = password;
+
+}
+
+//Function to generate password
+function generatePassword(length,characters) {
+  let password = "";
+  for (let i=0; i < length; i++){
+    password += characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
+  }
+  return password;
+};
