@@ -22,7 +22,7 @@ A web page that takes a user through password criteria via prompt boxes once the
 
 ## Link to password generator
 
-
+https://lildano50.github.io/password-generator/
 
 ## Screenshot of Working Application
 <img width="1006" alt="Screenshot 2023-08-23 213400" src="https://github.com/lildano50/password-generator/assets/119541939/ed4c3590-2431-4de3-a6dc-b122ad36aaac">
